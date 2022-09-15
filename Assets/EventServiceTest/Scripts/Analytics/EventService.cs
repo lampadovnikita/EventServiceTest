@@ -1,15 +1,23 @@
 using Assets.EventServiceTest.Scripts.Files;
+using Assets.EventServiceTest.Scripts.Network;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Assets.EventServiceTest.Scripts
 {
     public class EventService : MonoBehaviour
     {
         [SerializeField]
+        private string serverUrl = string.Empty;
+
+        [SerializeField]
         [Tooltip("Interval between sends in seconds")]
         private uint cooldownBeforeSend = 15;
+
+        [SerializeField]
+        private NetworkRequester networkRequester = default;
 
         private List<EventData> eventsData;
 
@@ -31,6 +39,9 @@ namespace Assets.EventServiceTest.Scripts
             {
                 InitializeEventsContainer();
             }
+
+            Assert.IsTrue(serverUrl != string.Empty);
+            Assert.IsTrue(cooldownBeforeSend > 0);
         }
 
         private void Start()
@@ -67,13 +78,14 @@ namespace Assets.EventServiceTest.Scripts
         private void SendEvents()
         {
             eventsToSend.events.AddRange(eventsData);
-
             eventsData.Clear();
 
             string dataToSend = JsonUtility.ToJson(eventsToSend);
-            Debug.Log($"Send data: {dataToSend}");
+            networkRequester.SendPostRequest(serverUrl, dataToSend, SendEventsPostRequestCompletedCallback);
+        }
 
-            // better clear on success
+        private void SendEventsPostRequestCompletedCallback(bool isSuccess)
+        {
             eventsToSend.events.Clear();
         }
 
