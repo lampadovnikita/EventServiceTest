@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Assets.EventServiceTest.Scripts
+namespace Assets.EventServiceTest.Scripts.Analytics
 {
     public class EventService : MonoBehaviour
     {

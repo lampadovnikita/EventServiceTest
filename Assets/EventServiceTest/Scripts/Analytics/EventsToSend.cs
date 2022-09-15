@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Assets.EventServiceTest.Scripts
+namespace Assets.EventServiceTest.Scripts.Analytics
 {
     [Serializable]
     public class EventsToSend

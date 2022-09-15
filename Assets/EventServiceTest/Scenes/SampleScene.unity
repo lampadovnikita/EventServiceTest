@@ -304,8 +304,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b49e28f4cf4d1724fbc10574ee91107e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownBeforeSend: 15
   serverUrl: https://example.com
+  cooldownBeforeSend: 5
+  networkRequester: {fileID: 1356971235}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
