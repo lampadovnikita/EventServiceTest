@@ -1,3 +1,4 @@
+using Assets.EventServiceTest.Scripts.Files;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,11 +38,20 @@ namespace Assets.EventServiceTest.Scripts
             StartCoroutine(SendEventsRoutine());
         }
 
+        private void OnDestroy()
+        {
+            StopAllCoroutines();
+
+            SaveEvents();
+        }
+
         private void InitializeEventsContainer()
         {
             eventsData = new List<EventData>();
 
             eventsToSend = new EventsToSend();
+
+            LoadEvents();
         }
 
         private IEnumerator SendEventsRoutine()
@@ -57,12 +67,29 @@ namespace Assets.EventServiceTest.Scripts
         private void SendEvents()
         {
             eventsToSend.events.AddRange(eventsData);
+
             eventsData.Clear();
 
             string dataToSend = JsonUtility.ToJson(eventsToSend);
             Debug.Log($"Send data: {dataToSend}");
 
+            // better clear on success
             eventsToSend.events.Clear();
+        }
+
+        private void SaveEvents()
+        {
+            eventsToSend.events.AddRange(eventsData);
+
+            string serializedEvents = JsonUtility.ToJson(eventsToSend);
+            FileSerializer.Save(FileSerializer.ANALYTICS_EVENTS_FILE_NAME, serializedEvents);
+        }
+
+        private void LoadEvents()
+        {
+            string serializedEvents = FileSerializer.Load(FileSerializer.ANALYTICS_EVENTS_FILE_NAME);
+
+            eventsToSend = JsonUtility.FromJson<EventsToSend>(serializedEvents);
         }
     }
 }
