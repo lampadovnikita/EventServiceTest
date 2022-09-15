@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.EventServiceTest.Scripts.UI;
+using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Assets.EventServiceTest.Scripts

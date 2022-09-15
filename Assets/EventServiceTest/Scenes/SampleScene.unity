@@ -304,6 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b49e28f4cf4d1724fbc10574ee91107e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldownBeforeSend: 15
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,7 +595,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6452510782816093625, guid: 5d314c3f353ca4d42be44a46337955a3, type: 3}
       propertyPath: type
-      value: CoinsSpent
+      value: coinsSpent
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d314c3f353ca4d42be44a46337955a3, type: 3}
@@ -844,7 +845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6452510782816093625, guid: 5d314c3f353ca4d42be44a46337955a3, type: 3}
       propertyPath: type
-      value: RewardGain
+      value: rewardGain
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d314c3f353ca4d42be44a46337955a3, type: 3}

@@ -2,29 +2,32 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MockEventsUI : MonoBehaviour
+namespace Assets.EventServiceTest.Scripts.UI
 {
-    // first argument - event's type
-    // second - event's data
-    public event Action<string, string> OnEventTracked;
-
-    private List<MockEventRowUI> mockEventRows;
-
-    private void Awake()
+    public class MockEventsUI : MonoBehaviour
     {
-        mockEventRows = new List<MockEventRowUI>(GetComponentsInChildren<MockEventRowUI>());
-    }
+        // first argument - event's type
+        // second - event's data
+        public event Action<string, string> OnEventTracked;
 
-    private void Start()
-    {
-        foreach (MockEventRowUI eventRowUI in mockEventRows)
+        private List<MockEventRowUI> mockEventRows;
+
+        private void Awake()
         {
-            eventRowUI.OnEventRowTrackEvent += OnEventRowTrackedEvent;
+            mockEventRows = new List<MockEventRowUI>(GetComponentsInChildren<MockEventRowUI>());
         }
-    }
 
-    private void OnEventRowTrackedEvent(string type, string data)
-    {
-        OnEventTracked?.Invoke(type, data);
+        private void Start()
+        {
+            foreach (MockEventRowUI eventRowUI in mockEventRows)
+            {
+                eventRowUI.OnEventRowTrackEvent += OnEventRowTrackedEvent;
+            }
+        }
+
+        private void OnEventRowTrackedEvent(string type, string data)
+        {
+            OnEventTracked?.Invoke(type, data);
+        }
     }
 }

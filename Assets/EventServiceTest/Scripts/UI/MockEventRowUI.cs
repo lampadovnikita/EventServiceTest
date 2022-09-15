@@ -4,48 +4,51 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
 
-public class MockEventRowUI : MonoBehaviour
+namespace Assets.EventServiceTest.Scripts.UI
 {
-    // first argument - event's type
-    // second - event's data
-    public event Action<string, string> OnEventRowTrackEvent;
-
-    [SerializeField]
-    private string type = default;
-
-    [SerializeField]
-    private Button trackEventButton = default;
-
-    [SerializeField]
-    private TMP_InputField valueInputField = default;
-
-    private void Awake()
+    public class MockEventRowUI : MonoBehaviour
     {
-        Assert.IsNotNull(trackEventButton);
-        Assert.IsNotNull(valueInputField);
+        // first argument - event's type
+        // second - event's data
+        public event Action<string, string> OnEventRowTrackEvent;
 
-        Assert.IsTrue(type != string.Empty);
-    }
+        [SerializeField]
+        private string type = default;
 
-    private void Start()
-    {
-        trackEventButton.onClick.AddListener(OnTrackEventButtonClicked);
-    }
+        [SerializeField]
+        private Button trackEventButton = default;
 
-    private void OnDestroy()
-    {
-        trackEventButton.onClick.RemoveListener(OnTrackEventButtonClicked);
-    }
+        [SerializeField]
+        private TMP_InputField valueInputField = default;
 
-    private void OnTrackEventButtonClicked()
-    {
-        string enteredValue = valueInputField.text;
-
-        if (enteredValue == string.Empty)
+        private void Awake()
         {
-            return;
+            Assert.IsNotNull(trackEventButton);
+            Assert.IsNotNull(valueInputField);
+
+            Assert.IsTrue(type != string.Empty);
         }
 
-        OnEventRowTrackEvent?.Invoke(type, enteredValue);
+        private void Start()
+        {
+            trackEventButton.onClick.AddListener(OnTrackEventButtonClicked);
+        }
+
+        private void OnDestroy()
+        {
+            trackEventButton.onClick.RemoveListener(OnTrackEventButtonClicked);
+        }
+
+        private void OnTrackEventButtonClicked()
+        {
+            string enteredValue = valueInputField.text;
+
+            if (enteredValue == string.Empty)
+            {
+                return;
+            }
+
+            OnEventRowTrackEvent?.Invoke(type, enteredValue);
+        }
     }
 }
