@@ -49,18 +49,22 @@ namespace Assets.EventServiceTest.Scripts.Analytics
             StartCoroutine(SendEventsRoutine());
         }
 
-        private void OnDestroy()
+        private void OnApplicationPause(bool pause)
         {
-            StopAllCoroutines();
+            if (pause == true)
+            {
+                SaveEvents();
+            }
+        }
 
-            SaveEvents();
+        private void OnApplicationQuit()
+        {            
+                SaveEvents();
         }
 
         private void InitializeEventsContainer()
         {
             eventsData = new List<EventData>();
-
-            eventsToSend = new EventsToSend();
 
             LoadEvents();
         }
@@ -79,19 +83,28 @@ namespace Assets.EventServiceTest.Scripts.Analytics
         {
             eventsToSend.events.AddRange(eventsData);
             eventsData.Clear();
+            
+            if (eventsToSend.events.Count == 0)
+            {
+                return;
+            }
 
-            string dataToSend = JsonUtility.ToJson(eventsToSend);
-            networkRequester.SendPostRequest(serverUrl, dataToSend, SendEventsPostRequestCompletedCallback);
+            string dataToSend = JsonUtility.ToJson(eventsToSend); 
+            networkRequester.SendPostRequest(serverUrl, dataToSend, SendEventsPostRequestCompletedCallback);            
         }
 
         private void SendEventsPostRequestCompletedCallback(bool isSuccess)
         {
-            eventsToSend.events.Clear();
+            if (isSuccess == true)
+            { 
+                eventsToSend.events.Clear();
+            }
         }
 
         private void SaveEvents()
         {
             eventsToSend.events.AddRange(eventsData);
+            eventsData.Clear();
 
             string serializedEvents = JsonUtility.ToJson(eventsToSend);
             FileSerializer.Save(FileSerializer.ANALYTICS_EVENTS_FILE_NAME, serializedEvents);
@@ -101,7 +114,15 @@ namespace Assets.EventServiceTest.Scripts.Analytics
         {
             string serializedEvents = FileSerializer.Load(FileSerializer.ANALYTICS_EVENTS_FILE_NAME);
 
-            eventsToSend = JsonUtility.FromJson<EventsToSend>(serializedEvents);
+            EventsToSend deserializedEvents = JsonUtility.FromJson<EventsToSend>(serializedEvents);
+            if (deserializedEvents == null)
+            {
+                eventsToSend = new EventsToSend();
+            }
+            else
+            { 
+                eventsToSend = deserializedEvents;
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Assets.EventServiceTest.Scripts.Files
 {
     public static class FileSerializer
     {
-        public const string ANALYTICS_EVENTS_FILE_NAME = "analyticsEvents.txt";
+        public const string ANALYTICS_EVENTS_FILE_NAME = "analyticsCache.txt";
 
         public static string Load(string fileName)
         {

@@ -35,7 +35,7 @@ namespace Assets.EventServiceTest.Scripts.Network
 
             if (webRequest.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log($"[{uri}] Success: {webRequest.downloadHandler.text}");
+                Debug.Log($"[{uri}] Success");
             }
             else
             {

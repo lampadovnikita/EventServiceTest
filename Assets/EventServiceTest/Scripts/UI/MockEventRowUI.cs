@@ -16,6 +16,9 @@ namespace Assets.EventServiceTest.Scripts.UI
         private string type = default;
 
         [SerializeField]
+        private string valueName = default;
+
+        [SerializeField]
         private Button trackEventButton = default;
 
         [SerializeField]
@@ -27,6 +30,7 @@ namespace Assets.EventServiceTest.Scripts.UI
             Assert.IsNotNull(valueInputField);
 
             Assert.IsTrue(type != string.Empty);
+            Assert.IsTrue(valueName != string.Empty);
         }
 
         private void Start()
@@ -48,7 +52,9 @@ namespace Assets.EventServiceTest.Scripts.UI
                 return;
             }
 
-            OnEventRowTrackEvent?.Invoke(type, enteredValue);
+            string valueToReturn = $"{valueName}:{enteredValue}";
+
+            OnEventRowTrackEvent?.Invoke(type, valueToReturn);
         }
     }
 }

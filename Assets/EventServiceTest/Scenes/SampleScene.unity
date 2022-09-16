@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serverUrl: https://example.com
-  cooldownBeforeSend: 5
+  cooldownBeforeSend: 15
   networkRequester: {fileID: 1356971235}
 --- !u!1 &963194225
 GameObject:
@@ -572,7 +572,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 518135871515116549, guid: 5d314c3f353ca4d42be44a46337955a3, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 392.9957
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 518135871515116549, guid: 5d314c3f353ca4d42be44a46337955a3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -641,6 +641,10 @@ PrefabInstance:
     - target: {fileID: 6452510782816093625, guid: 5d314c3f353ca4d42be44a46337955a3, type: 3}
       propertyPath: type
       value: coinsSpent
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452510782816093625, guid: 5d314c3f353ca4d42be44a46337955a3, type: 3}
+      propertyPath: valueName
+      value: amount
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d314c3f353ca4d42be44a46337955a3, type: 3}
@@ -822,7 +826,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 518135871515116549, guid: 5d314c3f353ca4d42be44a46337955a3, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 392.9957
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 518135871515116549, guid: 5d314c3f353ca4d42be44a46337955a3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -892,6 +896,10 @@ PrefabInstance:
       propertyPath: type
       value: rewardGain
       objectReference: {fileID: 0}
+    - target: {fileID: 6452510782816093625, guid: 5d314c3f353ca4d42be44a46337955a3, type: 3}
+      propertyPath: valueName
+      value: reward
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d314c3f353ca4d42be44a46337955a3, type: 3}
 --- !u!224 &1857450419 stripped
@@ -957,11 +965,11 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 300
+  m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
+  m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
@@ -1047,7 +1055,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 518135871515116549, guid: 5d314c3f353ca4d42be44a46337955a3, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 392.9957
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 518135871515116549, guid: 5d314c3f353ca4d42be44a46337955a3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1116,6 +1124,10 @@ PrefabInstance:
     - target: {fileID: 6452510782816093625, guid: 5d314c3f353ca4d42be44a46337955a3, type: 3}
       propertyPath: type
       value: levelStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452510782816093625, guid: 5d314c3f353ca4d42be44a46337955a3, type: 3}
+      propertyPath: valueName
+      value: level
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d314c3f353ca4d42be44a46337955a3, type: 3}
